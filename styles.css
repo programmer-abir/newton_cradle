@@ -1,0 +1,80 @@
+body {
+    background-color: #2c3e50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    perspective: 800px; /* Add perspective for 3D effect */
+}
+
+.pendulum {
+    position: absolute;
+    width: 220px;
+    height: 180px;
+    background: linear-gradient(135deg, #3498db, #e74c3c);
+    top: 50%;
+    left: 50%;
+    border-radius: 5%;
+    align-items: center;
+    border-top: 15px solid #eee7d5;
+    transform: translate(-50%, -50%) rotateX(20deg); /* Add 3D rotation */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform-style: preserve-3d; /* Preserve 3D transformations */
+}
+
+.pendulum_box {
+    display: flex;
+    padding: 120px 0 0 10px;
+    position: absolute;
+    flex: 1;
+}
+
+.ball {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #9b59b6, #e74c3c); /* Different colors */
+    position: relative;
+    transform-origin: 50% -300%;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    transform-style: preserve-3d; /* Preserve 3D transformations */
+}
+
+.ball::before {
+    content: '';
+    width: 2px;
+    height: 120px;
+    background-color: #fffeff;
+    left: 18px;
+    top: -120px;
+    position: absolute;
+}
+
+.ball.first {
+    animation: firstball 1s alternate ease-in-out infinite;
+}
+
+@keyframes firstball {
+    0% {
+        transform: rotate(35deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+}
+
+.ball.last {
+    animation: lastball 1s alternate ease-in-out infinite;
+}
+
+@keyframes lastball {
+    50% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-35deg);
+    }
+}
